@@ -5,6 +5,8 @@ console.log('%c HI', 'color: firebrick')
 // adds image elements to the DOM for each 🤔 image in the array
 document.addEventListener("DOMContentLoaded", (event) => {
 
+    let allDogs = []
+
     const dogKennel = document.querySelector('#dog-image-container')
     function addImagesToDom(dog) {
         let p = document.createElement('p')
@@ -22,9 +24,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
             }
             )
     }
-    console.log('dog Kennel Loaded')
     imgUrl()
-
 
     // Part 2
     //const breedUrl = "https://dog.ceo/api/breeds/list/all";
@@ -44,6 +44,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
             .then(breeds => {
                 for (const key in breeds.message) {
                     allBreeds(key)
+                    allDogs.push(key)
                 }
             })
             .then(() => {
@@ -52,27 +53,64 @@ document.addEventListener("DOMContentLoaded", (event) => {
             });
     }
     breedUrl()
-    console.log('breeds loaded')
 
-    function addEventListenersToLi(){
+    function addEventListenersToLi() {
         let pups = document.querySelectorAll('li');
 
-    pups.forEach((li) => {
-        li.addEventListener('click', changeColor);
-    });
+        pups.forEach((li) => {
+            li.addEventListener('click', changeColor);
+        });
 
-    function changeColor(event) {
-        const clickedLi = event.target;
-        if (clickedLi.style.color === "#000" || !clickedLi.style.color) {
-            clickedLi.style.color = "#ee5852";
-        } else {
-            clickedLi.style.color = "#000";
+        function changeColor(event) {
+            const clickedLi = event.target;
+            if (clickedLi.style.color === "#000" || !clickedLi.style.color) {
+                clickedLi.style.color = "#ee5852";
+            } else {
+                clickedLi.style.color = "#000";
+            }
         }
+
+        //Select Dropdown
+        let dropdown = document.querySelector('#breed-dropdown')
+        dropdown.addEventListener('change', function (e){
+            console.log(e.target.value)
+
+        let filterDogs = allDogs.filter(dog => {
+            return dog.startsWith(e.target.value)
+        })
+        let dogBreeds = document.querySelector('#dog-breeds')
+        dogBreeds.innerHTML = ''
+        // for (const breed in filterDogs) {
+        //     allBreeds(breed)   
+        // }
+        filterDogs.forEach(dog => {
+            allBreeds(dog)
+        })
+        console.log(allDogs)
+
+        })
+
+        // console.log(dropdown)
+
+        // function dropDownFilter() {
+        //     let select = document.querySelector('select').options
+        //     let pups = document.querySelectorAll('li')
+        //     for(const key of select) {
+        //         let dropDownValues = key.value
+        //         // console.log (dropDownValues)
+        //         // debugger
+        //     }
+        //     for(const key of pups){
+        //         let pupValue = key.innerHTML
+        //         for(const)
+                
+        //         // console.log(pupValue)
+        //         // debugger
+        //     }
+        // }
+        // dropDownFilter()
     }
-    console.log('changeColor loaded')
-}
 })
 
-
-// pups.addEventListener('click', changeColor)
-
+//Part 4 - dropdown selections
+//
