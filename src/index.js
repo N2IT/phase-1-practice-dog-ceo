@@ -71,7 +71,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
         }
 
         //Select Dropdown
-        let dropdown = document.querySelector('#breed-dropdown')
+        let dropdown = document.querySelector('#breed-dropdown') //variable on dropdown to addEVentListener
         dropdown.addEventListener('change', function (e){
             console.log(e.target.value)
 
@@ -90,27 +90,6 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
         })
 
-        // console.log(dropdown)
-
-        // function dropDownFilter() {
-        //     let select = document.querySelector('select').options
-        //     let pups = document.querySelectorAll('li')
-        //     for(const key of select) {
-        //         let dropDownValues = key.value
-        //         // console.log (dropDownValues)
-        //         // debugger
-        //     }
-        //     for(const key of pups){
-        //         let pupValue = key.innerHTML
-        //         for(const)
-                
-        //         // console.log(pupValue)
-        //         // debugger
-        //     }
-        // }
-        // dropDownFilter()
+       
     }
 })
-
-//Part 4 - dropdown selections
-//
